@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util-4.0.xsd" >
 
-    <bean id="Person" class="Person">
+    <bean id="person" class="Person">
         <property name="name" value="张三"></property>
         <property name="age" value="20"></property>
         <property name="cars" >
@@ -29,7 +29,7 @@
         <ref bean="car2"></ref>
     </util:list>
 
-    <bean id="person1" class="Person1" p:name="李四" p:age="20" p:cars="cars"></bean>
+    <bean id="person1" class="Person1" p:pname="李四" p:age="20" p:cars-ref="cars"></bean>
 
     <bean id="car1" class="Car">
         <property name="cname" value="奥迪"></property>
