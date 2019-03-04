@@ -1,0 +1,20 @@
+1、通过xml配置bean
+    1、通过property注入属性，属性需实现setter方法（name= value） eg：<property name="fieldname" value=""/>
+       1.1 注入引用类型 <property name="fieldname" ref bean="beanid">
+       1.2 注入list   <property name="field">
+                            <list>
+                                <value></value>
+                                <ref bean="beanid"></ref>
+                            </list>
+                        </property>
+        1.3 注入map   <property>
+                            <map>
+                                <entry> key="key"  value="value"></entry>
+                            </map>
+                      </property>
+    2、通过bean 属性的方法。<bean id="classname" class="class full path" p:fieldname="value"  p:refield-ref=""/>
+
+    3、构造函数赋值属性
+        <bean id="" class>
+            <constructor-arg name="" value="" index="0"/>
+        </bean>

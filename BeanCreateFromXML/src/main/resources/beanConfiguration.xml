@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util-4.0.xsd" >
 
-    <bean id="person" class="Person">
+    <bean id="person" class="Person" init-method="" destroy-method="" scope="property" lazy-init="true">
         <property name="name" value="张三"></property>
         <property name="age" value="20"></property>
         <property name="cars" >
