@@ -7,10 +7,10 @@ public class StudentTest {
     @Test
     public void beanTest(){
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("BeanXML.xml");
-        Student user = (Student)applicationContext.getBean("student");
+        ApplicationContext appContext = new ClassPathXmlApplicationContext("beanConfiguration.xml");
+        Person p = (Person)appContext.getBean("person");
 
-        System.out.println(user);
+        Person1 p1 = (Person1)appContext.getBean("person1");
 
 
     }

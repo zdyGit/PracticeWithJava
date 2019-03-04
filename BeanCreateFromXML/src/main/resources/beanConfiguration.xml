@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-4.0.xsd" >
+
+    <bean id="Person" class="Person">
+        <property name="name" value="张三"></property>
+        <property name="age" value="20"></property>
+        <property name="cars" >
+            <list>
+                <ref bean="car1"></ref>
+                <ref bean="car2"></ref>
+            </list>
+        </property>
+        <property name="des">
+            <map>
+                <entry key="a" value="a1"></entry>
+                <entry key="b" value="b1"></entry>
+            </map>
+        </property>
+    </bean>
+
+    <util:list id="cars">
+        <ref bean="car1"></ref>
+        <ref bean="car2"></ref>
+    </util:list>
+
+    <bean id="person1" class="Person1" p:name="李四" p:age="20" p:cars="cars"></bean>
+
+    <bean id="car1" class="Car">
+        <property name="cname" value="奥迪"></property>
+        <property name="price" value="30000"></property>
+    </bean>
+
+    <bean id="car2" class="Car">
+        <constructor-arg name="cname" value="长安" index="0"></constructor-arg>
+        <constructor-arg name="price" value="20000" index="1">
+        </constructor-arg>
+    </bean>
+
+</beans>
