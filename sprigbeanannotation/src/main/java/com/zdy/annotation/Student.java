@@ -1,30 +1,25 @@
 package com.zdy.annotation;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+public class Student{
+        private int stuID;
+        private String stuName;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
+        public Student(){
+                System.out.println("Student 构造函数");
+        }
 
-@Scope("property")
-@Lazy(false)
-@Component("student")
-public class Student {
+        public void setStuID(int stuID) {
+                this.stuID = stuID;
+        }
+        public void setStuName(String stuName) {
+                this.stuName = stuName;
+        }
 
-    @Autowired
-    public String name;
+        public int getStuID() {
+                return stuID;
+        }
 
-    @Autowired
-    public int age;
-
-    @PostConstruct
-    public void init(){};
-
-    @PreDestroy
-    public void destory(){
-
-
-    }
+        public String getStuName() {
+                return stuName;
+        }
 }

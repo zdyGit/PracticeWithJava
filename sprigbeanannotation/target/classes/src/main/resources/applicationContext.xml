@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="com.zdy.annotation.Student" p:stuName="张三" lazy-init="true"></bean>
+
+    <bean id="teacher" class="com.zdy.annotation.Teacher" >
+        <property name="techName" value="techOne"></property>
+    </bean>
+
+    <bean id="classRoom" class="com.zdy.annotation.ClassRoom" scope="prototype">
+        <constructor-arg index="0" value="roomOne"></constructor-arg>
+    </bean>
+
+</beans>
