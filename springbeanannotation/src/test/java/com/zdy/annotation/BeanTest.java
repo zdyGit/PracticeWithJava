@@ -2,6 +2,7 @@ package com.zdy.annotation;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BeanTest {
@@ -29,5 +30,11 @@ public class BeanTest {
         System.out.println("---------注解配置----------");
         Person p1 = appContext.getBean("person",Person.class);
         System.out.println(p1.animal.name);
+
+        System.out.println("---------java配置----------");
+        AnnotationConfigApplicationContext annoAppContext = new AnnotationConfigApplicationContext(SpringBeanConfig.class);
+        Person p2 = appContext.getBean("person",Person.class);
+        System.out.println(p2.animal.name);
+
     }
 }

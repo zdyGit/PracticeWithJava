@@ -10,7 +10,7 @@
     <!--通过注解配置bean-->
     <context:component-scan base-package="com.zdy.annotation" />
 
-    <bean id="student" class="com.zdy.annotation.Student" p:stuName="张三" lazy-init="true"></bean>
+    <bean id="student" class="com.zdy.annotation.Student" p:stuName="张三" lazy-init="false"></bean>
     <bean id="student1" class="com.zdy.annotation.Student" p:stuName="李四" lazy-init="true"></bean>
 
     <bean id="teacher" class="com.zdy.annotation.Teacher" init-method="init">
@@ -27,6 +27,6 @@
         <constructor-arg index="0" value="roomOne"></constructor-arg>
     </bean>
 
-    <bean id="person" class="com.zdy.annotation.Person"></bean>
+
 
 </beans>
