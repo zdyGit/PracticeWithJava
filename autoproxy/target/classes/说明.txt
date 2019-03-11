@@ -1,0 +1,131 @@
+1、主要元素
+    a.被代理对象SayHello,必须实现一个接口，接口中的方法，称之为连接点(Join poin)
+    b.切面：AspectObj , 用来定义增强实现（advice）
+    c.切面安装器：AspectHandler ,用来将切面的增强安插到被代理对象的具体地方，或前或后，需实现InvocationHandler，提供invoke方法，里面需封装一个被代理类对象
+      public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {}
+
+ 2、生成真实代理类
+ Proxy.newProxyInstance(sayHello.getClass().getClassLoader(),sayHello.getClass().getInterfaces(),handler);
+ 参数1：被代理对象的类加载器
+ 参数2：被代理对象继承的接口，代理类也会去实现这些接口
+ 参数3：执行者
+
+ 3、简单原理
+
+ 1、Proxy.newProxyInstance() 会生成一个真实代理对象$Proxy1，继承至Proxy对象
+ 2、Proxy 有个InvocationHandler 对象，来自 Proxy.newProxyInstance() 的第三个参数
+ 3、Proxy 通过反射生成真实代理对象$Proxy1，并实现了被代理类实现的接口，被代理类实现的接口列表 通过 Proxy.newProxyInstance()的第二个参数传进去
+ 4、$Proxy1 执行被代理后的方法时，主要通过 super.h.invoke(this,m1,argu) 来执行，实际执行的就是 AspectHandler中的invoke方法。
+    super 是$Proxy1的父类，Proxy。
+    h  是 InvocationHandler 对象
+    this 是真实的代理类 $Proxy1
+    m1 是被代理方法的Method 对象
+
+
+
+eg ： 生成的真实代理类
+
+
+// Decompiled by DJ v3.11.11.95 Copyright 2009 Atanas Neshkov  Date: 2012/8/9 20:11:32
+// Home Page: http://members.fortunecity.com/neshkov/dj.html  http://www.neshkov.com/dj.html - Check often for new version!
+// Decompiler options: packimports(3)
+
+import dynamic.proxy.UserService;
+import java.lang.reflect.*;
+
+public final class $Proxy11 extends Proxy
+    implements UserService
+{
+
+	// 构造方法，参数就是刚才传过来的MyInvocationHandler类的实例
+    public $Proxy11(InvocationHandler invocationhandler)
+    {
+        super(invocationhandler);
+    }
+
+    public final boolean equals(Object obj)
+    {
+        try
+        {
+            return ((Boolean)super.h.invoke(this, m1, new Object[] {
+                obj
+            })).booleanValue();
+        }
+        catch(Error _ex) { }
+        catch(Throwable throwable)
+        {
+            throw new UndeclaredThrowableException(throwable);
+        }
+    }
+
+	/**
+	 * 这个方法是关键部分
+	 */
+    public final void add()
+    {
+        try
+        {
+			// 实际上就是调用MyInvocationHandler的public Object invoke(Object proxy, Method method, Object[] args)方法，第二个问题就解决了
+            super.h.invoke(this, m3, null);
+            return;
+        }
+        catch(Error _ex) { }
+        catch(Throwable throwable)
+        {
+            throw new UndeclaredThrowableException(throwable);
+        }
+    }
+
+    public final int hashCode()
+    {
+        try
+        {
+            return ((Integer)super.h.invoke(this, m0, null)).intValue();
+        }
+        catch(Error _ex) { }
+        catch(Throwable throwable)
+        {
+            throw new UndeclaredThrowableException(throwable);
+        }
+    }
+
+    public final String toString()
+    {
+        try
+        {
+            return (String)super.h.invoke(this, m2, null);
+        }
+        catch(Error _ex) { }
+        catch(Throwable throwable)
+        {
+            throw new UndeclaredThrowableException(throwable);
+        }
+    }
+
+    private static Method m1;
+    private static Method m3;
+    private static Method m0;
+    private static Method m2;
+
+	// 在静态代码块中获取了4个方法：Object中的equals方法、UserService中的add方法、Object中的hashCode方法、Object中toString方法
+    static
+    {
+        try
+        {
+            m1 = Class.forName("java.lang.Object").getMethod("equals", new Class[] {
+                Class.forName("java.lang.Object")
+            });
+            m3 = Class.forName("dynamic.proxy.UserService").getMethod("add", new Class[0]);
+            m0 = Class.forName("java.lang.Object").getMethod("hashCode", new Class[0]);
+            m2 = Class.forName("java.lang.Object").getMethod("toString", new Class[0]);
+        }
+        catch(NoSuchMethodException nosuchmethodexception)
+        {
+            throw new NoSuchMethodError(nosuchmethodexception.getMessage());
+        }
+        catch(ClassNotFoundException classnotfoundexception)
+        {
+            throw new NoClassDefFoundError(classnotfoundexception.getMessage());
+        }
+    }
+}

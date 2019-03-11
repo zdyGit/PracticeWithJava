@@ -3,7 +3,12 @@ package springaop;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Action {
+public class ActionTest {
+
+    public ActionTest(){
+
+    }
+
     public void doWork(){
         System.out.println("do working ......");
     }
