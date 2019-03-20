@@ -19,6 +19,6 @@
     </environments>
 
     <mappers>
-        <mapper class="com.zdy.mybatis.StudentMapper"></mapper>
+        <mapper resource="dbmapper/StudentMapper.xml"></mapper>
     </mappers>
 </configuration>
